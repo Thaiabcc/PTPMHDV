@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh Sửa Người Dùng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e9ecef;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            background: #ffffff;
+            border-radius: 0.75rem;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #495057;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #495057;
+        }
+        .form-control {
+            border-radius: 0.5rem;
+            padding: 10px;
+        }
+        .btn {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
+        }
+        .text-center {
+            margin-top: 20px;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Khoảng cách giữa các trường */
+        }
+        .form-group {
+            flex: 1 1 calc(50% - 10px); /* Mỗi trường chiếm 50% chiều rộng trừ khoảng cách */
+        }
+        @media (max-width: 768px) {
+            .form-group {
+                flex: 1 1 100%; /* Trường sẽ chiếm 100% chiều rộng trên màn hình nhỏ */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chỉnh Sửa Người Dùng</h1>
+        <form th:action="@{/nguoidung/edit/{id}(id=${nguoiDung.id})}" th:object="${nguoiDung}" method="post">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="username">Tên Người Dùng</label>
+                    <input type="text" id="username" th:field="*{username}" class="form-control" placeholder="Nhập tên người dùng" required>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Tên người dùng không hợp lệ.</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="Nhập email" required>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email không hợp lệ.</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật Khẩu Mới</label>
+                    <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Nhập mật khẩu mới">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Mật khẩu không hợp lệ.</div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Xác Nhận</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Xác nhận mật khẩu mới">
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Cập Nhật Người Dùng</button>
+                <a href="/nguoidung" class="btn btn-secondary">Quay Lại</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

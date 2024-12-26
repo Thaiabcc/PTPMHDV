@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản Lý Người Dùng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f8;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            margin: 0; /* Bỏ margin để căn chỉnh chính xác */
+            color: #343a40;
+            text-align: center;
+            font-weight: bold;
+            flex-grow: 1; /* Để tiêu đề chiếm không gian còn lại */
+        }
+        .table {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .table thead {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        .btn {
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            width: 100%; /* Chiếm toàn bộ khung */
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center; /* Căn giữa các nút */
+        }
+        .text-center {
+            text-align: center; /* Căn giữa nội dung */
+        }
+        .button-container {
+            border: 1px solid #007bff; /* Đường viền */
+            border-radius: 0.5rem; /* Bo tròn góc */
+            padding: 10px; /* Khoảng cách bên trong */
+            margin: 10px; /* Khoảng cách từ trên xuống */
+            width: fit-content; /* Kích thước khung theo nội dung */
+            background-color: #ffffff; /* Màu nền khung */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+        }
+        .header-container {
+            display: flex; /* Sử dụng Flexbox */
+            justify-content: space-between; /* Căn giữa hai bên */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            margin-bottom: 20px; /* Khoảng cách bên dưới */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="header-container">
+            <div class="button-container">
+                <a class="btn btn-primary" href="/books/home">Trang chủ</a>
+            </div>
+            <h1>Quản Lý Người Dùng</h1>
+            <div class="button-container">
+                <a th:href="@{/nguoidung/add}" class="btn btn-success">Thêm Người Dùng</a>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Mật Khẩu</th>
+                    <th class="text-center">Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td class="text-center" th:text="${user.id}"></td>
+                    <td class="text-center" th:text="${user.username}"></td>
+                    <td class="text-center" th:text="${user.email}"></td>
+                    <td class="text-center" th:text="${user.password}"></td>
+                    <td class="text-center">
+                        <div class="action-buttons">
+                            <a th:href="@{/nguoidung/edit/{id}(id=${user.id})}" class="btn btn-warning">Sửa</a>
+                            <a th:href="@{/nguoidung/delete/{id}(id=${user.id})}" class="btn btn-danger">Xóa</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

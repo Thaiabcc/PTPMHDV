@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thống kê lợi nhuận theo danh mục</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<style>
+h1 {
+	text-align: center;
+	color: #3b9af9;
+	margin: 30px 0;
+}
+
+#buttonContainer1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border: none;
+    max-width: 100%;
+    margin: auto;
+}
+
+#buttonContainer2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border: none;
+    max-width: 100%;
+    margin: auto;
+}
+
+button {
+    padding: auto 30px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    background-color: #FF0000;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    border: none;	
+}
+</style>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<h1>Thống kê lợi nhuận theo danh mục</h1>
+	<div id="buttonContainer1"></div>
+	<div id="buttonContainer2"></div>
+	<script>
+		fetch("http://localhost:8080/api/listOfCate")
+		.then(response => response.json())
+		.then(res => {
+			const container1 = document.getElementById('buttonContainer1');
+			const container2 = document.getElementById('buttonContainer2');
+			res.forEach((item, index) => {
+				if (index < 5) {
+					const btn = document.createElement('button');
+					btn.addEventListener('click', function() {
+			            window.location.href = "http://localhost:8080/category/profit/" + item.maDM;
+			        });
+		            btn.textContent = item.tenDM;
+		            container1.appendChild(btn);
+				}
+				else {
+					const btn = document.createElement('button');
+					btn.addEventListener('click', function() {
+			            window.location.href = "http://localhost:8080/category/profit/" + item.maDM;
+			        });
+		            btn.textContent = item.tenDM;
+		            container2.appendChild(btn);
+				}
+			});
+		})
+		.catch(error => console.log(error))
+	</script>
+</body>
+</html>

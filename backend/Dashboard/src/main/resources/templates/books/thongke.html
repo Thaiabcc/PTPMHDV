@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+            font-family: 'Roboto', sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+        }
+        .header {
+            background-color: #ffffff;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            color: #0056b3;
+            text-align: center;
+            margin: 0;
+        }
+        .container-fluid {
+            margin-top: 100px; /* Điều chỉnh khoảng cách cho header cố định */
+        }
+        .sidebar {
+            background-color: #ffffff;
+            border-right: 1px solid #dee2e6;
+            border-left: 3px solid #0056b3; /* Thêm border bên trái */
+            height: 100vh;
+            padding: 40px 15px;
+            width: 250px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar .mb-4 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .sidebar .fa-3x {
+            font-size: 2rem;
+            color: #0056b3;
+            transition: transform 0.3s;
+        }
+        .sidebar .fa-3x:hover {
+            transform: scale(1.1);
+        }
+        .sidebar .card-title {
+            font-size: 1.3rem;
+            color: #343a40;
+        }
+        .sidebar .btn-custom {
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .sidebar .btn-custom:hover {
+            background-color: #004494;
+            transform: translateY(-2px);
+        }
+        .main-content {
+            padding: 30px;
+            flex-grow: 1;
+            margin-top: 70px; /* Thêm khoảng cách cho main content */
+        }
+        .chart-placeholder {
+            position: relative;
+            height: 70vh;
+            background-color: #e9ecef;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Đảm bảo không bị tràn ra ngoài */
+        }
+        .chart-placeholder img {
+            position: absolute;
+            opacity: 0;
+            animation: fadeEffect 16s infinite;
+        }
+        .chart-placeholder img:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .chart-placeholder img:nth-child(2) {
+            animation-delay: 4s;
+        }
+        .chart-placeholder img:nth-child(3) {
+            animation-delay: 8s;
+        }
+        .chart-placeholder img:nth-child(4) {
+            animation-delay: 12s;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        /* Flexbox layout */
+        .row-flex {
+            display: flex;
+            flex-direction: row;
+            gap: 50px; /* Thêm khoảng cách giữa sidebar và content */
+        }
+        .mb-4 {
+            margin-top: 50px;
+        }
+        .sidebar {
+            flex: 0 0 250px; /* Đảm bảo sidebar có chiều rộng cố định */
+            margin-top: 20px;
+        }
+        .main-content {
+            flex: 1;
+        }
+        @keyframes fadeEffect {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            33% { opacity: 1; }
+            43% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Dashboard Thống Kê</h1>
+</div>
+
+<div class="container-fluid mt-5">
+    <div class="row row-flex">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="mb-4">
+                <i class="fas fa-chart-line fa-3x mb-2"></i>
+                <h3 class="card-title">Thống kê sách tồn kho</h3>
+                <a href="high-stock" class="btn btn-custom">Xem</a>
+            </div>
+
+            <div class="mb-4">
+                <i class="fas fa-chart-line fa-3x mb-2"></i>
+                <h3 class="card-title">Thống kê sách bán chạy</h3>
+                <a href="best-seller" class="btn btn-custom">Xem</a>
+            </div>
+
+            <div class="mb-4">
+                <i class="fas fa-tags fa-3x mb-2"></i>
+                <h3 class="card-title">Thống kê sách theo danh mục</h3>
+                <a href="/category/listofcate" class="btn btn-custom">Xem</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="chart-placeholder">
+                <img src="https://images4.alphacoders.com/133/1331866.jpeg" alt="Hình ảnh minh họa 1">
+                <img src="https://i.pinimg.com/1200x/bf/ef/06/bfef06e7ce4e78d9562236337dee1375.jpg" alt="Hình ảnh minh họa 2">
+                <img src="https://i.pinimg.com/1200x/f9/5e/40/f95e40a0d8731c001a2c8f6bbfbccba1.jpg" alt="Hình ảnh minh họa 3">
+                <img src="https://i.pinimg.com/1200x/3a/eb/4c/3aeb4c224181f34720606ddc1aac74df.jpg" alt="Hình ảnh minh họa 4">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+</body>
+
+</html>

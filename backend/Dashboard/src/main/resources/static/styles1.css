@@ -1,0 +1,56 @@
+@charset "UTF-8";
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #007bff;
+    color: #007bff;
+    border-radius: 4px;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination span {
+    padding: 8px 12px;
+}
+
+/* Tùy chỉnh cho bảng */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse; /* Đảm bảo các viền bảng không bị chồng lên nhau */
+}
+
+th, td {
+    text-align: center; /* Canh giữa nội dung trong các ô */
+    vertical-align: middle; /* Canh giữa theo chiều dọc */
+    padding: 10px;
+}
+
+th {
+    background-color: #343a40; /* Màu nền tối cho tiêu đề */
+    color: white;
+    font-size: 16px;
+}
+
+td {
+    font-size: 14px;
+}
+
+/* Tùy chỉnh cho ảnh */
+img {
+    border-radius: 5px;
+}

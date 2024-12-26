@@ -1,0 +1,145 @@
+/* 
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            overflow-x: hidden; 
+        }
+
+        header {
+            background-color: #555;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border: 2px blueviolet inset;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bolder;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        #books {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 1%;
+            justify-content: space-around; 
+        }
+
+        .book {
+    display: flex; Hoặc block tùy thuộc vào cấu trúc
+    flex-direction: column; Để đảm bảo tất cả các phần tử con nằm dọc
+    align-items: flex-start; Căn lề bên trái cho tất cả các phần tử con
+}
+         
+
+        .book h3 {
+    font-size: 1em; Có thể tăng kích thước chữ
+    margin-top: 10px; Giữ khoảng cách phía trên
+    margin-left: 0; Đặt margin bên trái về 0 để tránh lệch
+    margin-right: 0; Đặt margin bên phải về 0
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    width: auto; Có thể thay đổi về auto để tự động điều chỉnh kích thước
+    text-align: left; Canh trái nội dung
+}
+
+        .book p {
+            font-size: 0.8em; 
+            color: #555;
+            margin: 5px 0; 
+        }
+        
+        .sachnoibat h2,
+        .sachhot h2,
+        .sachdocnhieu h2 {
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .anhsachhot{
+            transform: translateX(-240px);
+        }
+
+        .book:hover {
+            transform: scale(1.05);
+        }
+
+        .book img {
+            max-width: 80%; 
+            height: auto;
+        }
+
+        .slider {
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 500px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover; 
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #555;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        } */
+        

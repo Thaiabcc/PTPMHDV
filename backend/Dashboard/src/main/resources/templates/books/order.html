@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Đơn hàng</title>
     <style>
-        /* CSS tùy chỉnh */
-        h1{
+        h1 {
             text-align: center;
         }
         body {
@@ -32,36 +31,26 @@
     </style>
 </head>
 <body>
-    <h1>Đơn hàng của khách</h1>
+    <h1>Xem Đơn hàng</h1>
     <div class="table-responsive-sm">
         <table class="table table-hover table-bordered shadow-lg rounded">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Ngày Đặt Hàng</th>
-                    <th>Trạng Thái</th>
-                    <th>Tên Khách Hàng</th>
-                    <th>Địa Chỉ Giao Hàng</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Email</th>
-                    <th>Phương Thức Thanh Toán</th>
-                    <th>Tổng Giá Trị Đơn Hàng</th>
+                    <th>ID Đơn Hàng</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Tổng Tiền</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="donHang : ${donHangs}">
-                    <td th:text="${donHang.idDonHang}"></td>
-                    <td th:text="${donHang.ngayDatHang}"></td>
-                    <td th:text="${donHang.trangThaiDonHang}"></td>
-                    <td th:text="${donHang.tenKhachHang}"></td>
-                    <td th:text="${donHang.diaChiGiaoHang}"></td>
-                    <td th:text="${donHang.soDienThoai}"></td>
-                    <td th:text="${donHang.email}"></td>
-                    <td th:text="${donHang.phuongThucThanhToan}"></td>
-                    <td th:text="${donHang.tongGiaTriDonHang} + ' ₫'"></td>
+                    <td th:text="${donHang.id}"></td>
+                    <td th:text="${donHang.tenSanPham}"></td>
+                    <td th:text="${donHang.soLuong}"></td>
+                    <td th:text="${donHang.tongTien} + ' ₫'"></td>
                 </tr>
                 <tr th:if="${#lists.isEmpty(donHangs)}">
-                    <td colspan="9" style="text-align: center;">Không có dữ liệu</td>
+                    <td colspan="4" style="text-align: center;">Không có dữ liệu</td>
                 </tr>
             </tbody>
         </table>

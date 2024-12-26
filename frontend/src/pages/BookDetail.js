@@ -25,6 +25,12 @@ const BookDetail = () => {
     const [quantity, setQuantity] = useState(1); // Số lượng sách
     const { addToCart } = useCart(); // Lấy hàm addToCart từ context
 
+    // Hàm chuyển đổi giá từ chuỗi "19,800₫" thành số
+    const parsePrice = (priceString) => {
+        const numericString = priceString.replace(/[^0-9.-]+/g, ""); // Loại bỏ các ký tự không phải là số
+        return parseFloat(numericString); // Chuyển chuỗi thành số
+    };
+
     useEffect(() => {
         const fetchBookDetail = async () => {
             try {
@@ -51,6 +57,26 @@ const BookDetail = () => {
     const handleAddToCart = () => {
         addToCart(book.maSach, quantity); // Gọi hàm addToCart với maSach và quantity
         console.log(`Thêm ${quantity} ${book.tenSach} vào giỏ hàng.`);
+    };
+
+    const handleBuyNow = async () => {
+        const price = parsePrice(book.giaKM); // Chuyển giá khuyến mãi thành số
+        const totalAmount = price * quantity; // Tính tổng tiền (giả sử tính theo giá khuyến mãi)
+
+        const orderData = {
+            tenSanPham: book.tenSach,       // Tên sách
+            soLuong: quantity,              // Số lượng sách
+            tongTien: totalAmount           // Tổng tiền
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/order', orderData);
+            alert('Đặt mua thành công!');
+            console.log(response.data); // Xử lý phản hồi từ backend
+        } catch (error) {
+            alert('Có lỗi xảy ra khi đặt mua.');
+            console.error(error);
+        }
     };
 
     if (loading) {
@@ -129,7 +155,7 @@ const BookDetail = () => {
                                 <Button variant="contained" color="primary" fullWidth onClick={handleAddToCart}>
                                     THÊM VÀO GIỎ HÀNG
                                 </Button>
-                                <Button variant="outlined" color="primary" fullWidth style={{ marginTop: '10px' }}>
+                                <Button variant="outlined" color="primary" fullWidth style={{ marginTop: '10px' }} onClick={handleBuyNow}>
                                     MUA NGAY
                                 </Button>
                             </Box>

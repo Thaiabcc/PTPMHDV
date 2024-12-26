@@ -1,114 +1,69 @@
 package com.example.demo.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "donhang")
 public class DonHang {
-	@Id
-	@Column(name = "IDDonHang")
-	private int idDonHang;
-	private LocalDate ngayDatHang;
-	private String trangThaiDonHang;
-	private String tenKhachHang;
-	private String diaChiGiaoHang;
-	private String soDienThoai;
-	private String email;
-	private String phuongThucThanhToan;
-	private double tongGiaTriDonHang;
 
-	public DonHang() {
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động sinh giá trị cho id
+    @Column(name = "id")
+    private int id;
 
-	public DonHang(int idDonHang, LocalDate ngayDatHang, String trangThaiDonHang, String tenKhachHang,
-			String diaChiGiaoHang, String soDienThoai, String email, String phuongThucThanhToan,
-			double tongGiaTriDonHang) {
-		this.idDonHang = idDonHang;
-		this.ngayDatHang = ngayDatHang;
-		this.trangThaiDonHang = trangThaiDonHang;
-		this.tenKhachHang = tenKhachHang;
-		this.diaChiGiaoHang = diaChiGiaoHang;
-		this.soDienThoai = soDienThoai;
-		this.email = email;
-		this.phuongThucThanhToan = phuongThucThanhToan;
-		this.tongGiaTriDonHang = tongGiaTriDonHang;
-	}
+    @Column(name = "ten_san_pham")
+    private String tenSanPham; // Tên sản phẩm
 
-	// Getters và Setters
-	public int getIdDonHang() {
-		return idDonHang;
-	}
+    @Column(name = "so_luong")
+    private int soLuong; // Số lượng sản phẩm
 
-	public void setIdDonHang(int idDonHang) {
-		this.idDonHang = idDonHang;
-	}
+    @Column(name = "tong_tien")
+    private double tongTien; // Tổng tiền của đơn hàng
 
-	public LocalDate getNgayDatHang() {
-		return ngayDatHang;
-	}
+    public DonHang() {
+    }
 
-	public void setNgayDatHang(LocalDate ngayDatHang) {
-		this.ngayDatHang = ngayDatHang;
-	}
+    public DonHang(String tenSanPham, int soLuong, double tongTien) {
+        this.tenSanPham = tenSanPham;
+        this.soLuong = soLuong;
+        this.tongTien = tongTien;
+    }
 
-	public String getTrangThaiDonHang() {
-		return trangThaiDonHang;
-	}
+    // Getters và Setters
+    public int getId() {
+        return id;
+    }
 
-	public void setTrangThaiDonHang(String trangThaiDonHang) {
-		this.trangThaiDonHang = trangThaiDonHang;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getTenKhachHang() {
-		return tenKhachHang;
-	}
+    public String getTenSanPham() {
+        return tenSanPham;
+    }
 
-	public void setTenKhachHang(String tenKhachHang) {
-		this.tenKhachHang = tenKhachHang;
-	}
+    public void setTenSanPham(String tenSanPham) {
+        this.tenSanPham = tenSanPham;
+    }
 
-	public String getDiaChiGiaoHang() {
-		return diaChiGiaoHang;
-	}
+    public int getSoLuong() {
+        return soLuong;
+    }
 
-	public void setDiaChiGiaoHang(String diaChiGiaoHang) {
-		this.diaChiGiaoHang = diaChiGiaoHang;
-	}
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
 
-	public String getSoDienThoai() {
-		return soDienThoai;
-	}
+    public double getTongTien() {
+        return tongTien;
+    }
 
-	public void setSoDienThoai(String soDienThoai) {
-		this.soDienThoai = soDienThoai;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhuongThucThanhToan() {
-		return phuongThucThanhToan;
-	}
-
-	public void setPhuongThucThanhToan(String phuongThucThanhToan) {
-		this.phuongThucThanhToan = phuongThucThanhToan;
-	}
-
-	public double getTongGiaTriDonHang() {
-		return tongGiaTriDonHang;
-	}
-
-	public void setTongGiaTriDonHang(double tongGiaTriDonHang) {
-		this.tongGiaTriDonHang = tongGiaTriDonHang;
-	}
+    public void setTongTien(double tongTien) {
+        this.tongTien = tongTien;
+    }
 }

@@ -41,8 +41,8 @@ public class PaymentController {
         String hashData = buildHashData(vnpParams);
         logger.info("Hash Data: {}", hashData);
 
-        // Generate HMAC SHA256 secure hash
-        String secureHash = hmacSHA256(hashData, hashSecret);
+        // Generate HMAC SHA512 secure hash (updated from SHA256 to SHA512)
+        String secureHash = hmacSHA512(hashData, hashSecret);
         vnpParams.put("vnp_SecureHash", secureHash);
         logger.info("Secure Hash: {}", secureHash);
 
@@ -105,16 +105,16 @@ public class PaymentController {
 
     private String buildHashData(Map<String, String> params) {
         return params.entrySet().stream()
-                .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty())
+                .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty() && !entry.getKey().equals("vnp_SecureHash"))
                 .sorted(Map.Entry.comparingByKey())
                 .map(entry -> entry.getKey() + "=" + entry.getValue())
                 .collect(Collectors.joining("&"));
     }
 
-    private String hmacSHA256(String data, String key) {
+    private String hmacSHA512(String data, String key) {
         try {
-            SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
-            Mac mac = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA512");
+            Mac mac = Mac.getInstance("HmacSHA512");  // Updated to HMAC-SHA512
             mac.init(secretKeySpec);
             byte[] hmacData = mac.doFinal(data.getBytes(StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
@@ -123,7 +123,7 @@ public class PaymentController {
             }
             return sb.toString();
         } catch (Exception e) {
-            throw new RuntimeException("Lỗi khi tạo chữ ký HMAC SHA256", e);
+            throw new RuntimeException("Lỗi khi tạo chữ ký HMAC SHA512", e);
         }
     }
 

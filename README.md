@@ -1,6 +1,6 @@
-# Book Management System
+ # Book Management System
 
-Một hệ thống quản lý sách với backend là dashboard sử dụng Spring Boot và frontend bán sách sử dụng ReactJS. Dự án này cho phép người dùng quản lý danh sách sách, thêm, sửa, xóa sách, và cho phép người dùng cuối mua sách từ giao diện frontend.
+- Một hệ thống quản lý sách với backend là dashboard sử dụng Spring Boot và frontend bán sách sử dụng ReactJS. Dự án này cho phép người dùng quản lý danh sách sách, thêm, sửa, xóa sách, và cho phép người dùng cuối mua sách từ giao diện frontend.
 
 ## Các tính năng
 
